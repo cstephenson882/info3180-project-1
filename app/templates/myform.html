@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+
+{% block main %}
+    <h1>Add New Property</h1>
+    {% include 'flash_messages.html' %}
+    <form  action="{{url_for('properties_create')}}" method="POST">
+        {{ form.csrf_token }}
+        <div class="d-flex flex-column h-100 justify-content-between" >
+            {{ form.property_title.label }} {{ form.property_title}}
+            {{ form.property_description.label }} {{ form.property_description }}
+            <div>
+                {{ form.property_no_rooms.label}} {{form.property_no_rooms}}
+                {{form.property_no_bathrooms.label}} {{form.property_no_bathrooms}}
+            </div>
+            
+            <div>
+                {{ form.property_price.label}} {{form.property_price}}
+                {{form.property_type.label}} {{form.property_type}}
+            </div>
+
+            {{form.property_location.label}} {{form.property_location}}
+            
+        </div>
+        <button class="btn btn-lg btn-primary w-100 mt-3" type="submit">Submit</button>
+
+     </form>
+
+{% endblock %}
+</html>
