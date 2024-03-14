@@ -1,10 +1,130 @@
 {% extends "base.html" %}
 
+{% block styles%}
+    <style>
+        body{
+            background-color: rgb(241, 241, 241);
+        }
+        
+        .show_property{
+            background-color: white;
+            width: 350px;
+            height: auto;
+        }
+
+        img{
+            width: 350px;
+            height: 250px;
+            background-color: green;
+        }
+        .properties_contatiner{
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: row;
+            gap: 20px;
+        }
+
+        .show_property{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .show_property_{
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            
+        }
+
+        .property_price{
+            background-color: lightblue;
+            border-radius: 10%;
+            height: 30px;
+            
+            
+        }
+
+        .flex_end{
+            
+            margin: 0px;
+        }
+
+        .see_more{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            
+            background-color: lightgreen ;
+            width: 100%;
+            height: 50px;
+        }
+
+        h2{
+            font-size: 20px;
+            margin-top: 10px;
+        }
+        p, h2{
+            margin: 10px;
+        }
+        a{
+        text-decoration: none;
+        color: white;
+            
+        }
+
+        .shaddow{
+            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        }
+
+        .hover-box {
+            
+            transition: background-color 0.3s ease; /* Smooth transition for background color change */
+          }
+          
+          .hover-box:hover {
+            background-color:rgb(241, 241, 241); /* Change background color on hover */
+            cursor: pointer; /* Change cursor on hover to indicate interactivity */
+            transform: scale(1.01112);
+          }
+    </style>
+
+{% endblock %}
 
 {% block main %}
 {% include 'flash_messages.html' %}
-    <h1>All Properties</h1>
+    <h1 class="">All Properties</h1>
+<div class = "properties_contatiner ">
+    
+        {% for user in users%}
+        <div class="show_property shaddow hover-box ">
+            <div class="show_property_">
+ 
+            <!-- <form action="{{url_for('properties', filename = user.id)}}" class="show_property" method="get">  -->
+                <div class = "left_side"> <img src="{{url_for('get_image',img = user.property_filename)}}" alt="{{url_for('get_image',img = user.property_filename)}}"> </div>
+                <!-- <img src="{{url_for('static',filename='uploads/' + user.property_filename)}}" alt="{{user.property_filename}}"> -->
+                <!-- <img src="../../uploads/im1.jpg" alt="www"> -->
+                
+                <h2 > {{user.property_title}} </h2> 
+                <p>{{user.property_location}}</p>
+                <p class ="property_price mt-0">${{user.property_price}}</p>
+            </div>
+                <div class="see_more">
+                <p class = "flex_end"><a href="{{url_for('show_property',filename=user.id)}}">See more</a></p>
+            </div>
+        </div>
+        {% endfor %}
+    
+
+</div>
+  
+    <script >
+      
+    
+    </script>
     
 
 {% endblock %}
-</html>
+
+

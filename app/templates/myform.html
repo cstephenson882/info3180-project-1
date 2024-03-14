@@ -1,14 +1,40 @@
 {% extends "base.html" %}
+{% block styles%}
+
+<style>
+    .large-input {
+        height: 70px; /* Adjust width as needed */
+    }
+    .new_property_containter{
+        width: 600px;
+        
+    }
+    .container{
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    }
 
 
+
+    div{
+        margin-top: 10px;
+    }
+
+
+
+</style>
+{%endblock%}
 {% block main %}
-    <h1>Add New Property</h1>
+
     {% include 'flash_messages.html' %}
-    <form  action="{{url_for('properties_create')}}" method="POST">
+    <div class="new_property_containter">
+    <form  action="{{url_for('properties_create')}}" method="POST" enctype="multipart/form-data">
+        <h2>Add New Property</h2>
         {{ form.csrf_token }}
         <div class="d-flex flex-column h-100 justify-content-between" >
             {{ form.property_title.label }} {{ form.property_title}}
-            {{ form.property_description.label }} {{ form.property_description }}
+            {{ form.property_description.label (size=255)}} {{ form.property_description }}
             <div>
                 {{ form.property_no_rooms.label}} {{form.property_no_rooms}}
                 {{form.property_no_bathrooms.label}} {{form.property_no_bathrooms}}
@@ -22,9 +48,15 @@
             {{form.property_location.label}} {{form.property_location}}
             
         </div>
+
+        <div>
+            {{form.property_file.label}} {{form.property_file}}
+        </div>
         <button class="btn btn-lg btn-primary w-100 mt-3" type="submit">Submit</button>
 
      </form>
+
+    </div>
 
 {% endblock %}
 </html>

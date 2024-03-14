@@ -4,7 +4,7 @@ from flask import Flask
 from .config import Config
 
 app = Flask(__name__)
-from app import views
+
 app.config.from_object(Config)
 
 # ======== Database setup start ================== 
@@ -20,5 +20,5 @@ migrate = Migrate(app, db)
 
 # Initialize the form
 # my_form = MyForm()
-# from app import views
+from app import views
 

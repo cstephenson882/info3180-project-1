@@ -1,0 +1,95 @@
+{% extends 'base.html'%}
+{% block styles%}
+<style>
+    body{
+        background-color: rgb(241, 241, 241);
+    }
+    .right_side{
+        display: flex   ;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    .single_property_containter{
+        display: flex;
+        justify-content: center;
+        margin-top: 50px;
+      
+    }
+    .single_property{
+        background-color: white;
+        
+        display: flex;
+        gap: 15px;
+        width: 800px;
+    }
+    img, left_side {
+        min-height: 350px;
+        max-width: 350px;
+    }
+
+    .property_price , .property_type {
+        margin: 0;
+        color: white;
+    }
+
+    .color_bg_green{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: lightseagreen;
+        margin-right: 10px;
+        width: 100px;
+        height: 35px;
+        border-radius: 40%;
+    }
+
+    .color_bg_orange{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: lightsalmon;
+        margin-right: 10px;
+        width: 100px;
+        height: 35px;
+        border-radius: 40%;
+    }
+
+    .flex_{
+        display: flex;
+        gap: 10px;
+
+       
+    }
+
+</style>
+{%endblock%}
+{% block main%}
+
+
+<div class="single_property_containter" >
+    {% for row in user%}
+    
+    <div class = "single_property">
+        <div class = "left_side"> <img src="{{url_for('get_image',img = row.property_filename)}}" alt=""> </div>
+        <!-- <div class = "left_side"> <img src="{{url_for('static',filename = 'uploads/'+ row.property_filename)}}" alt=""> </div> -->
+        <div class = "right_side">
+            <h2> {{row.property_title}} </h2>
+            <div class="flex_"> 
+                <div class="color_bg_green"><p class="property_price">${{row.property_price}}</p></div>  
+                <div class="color_bg_orange"><p class="property_type">{{row.property_type}}</p> </div> 
+            </div>
+            
+            {{row.property_description}}
+            <div class="flex_"> 🛏️{{row.property_no_rooms}} bedrooms    ||    🛁{{row.property_no_bathrooms}} bathrooms </div>
+
+            📍 {{row.property_location}}
+        </div>
+    </div>
+
+
+    
+    {%endfor%}
+</div>
+
+{%endblock%}
+
