@@ -21,7 +21,7 @@ class MyForm(FlaskForm):
 
     property_location = StringField('Location', validators=[InputRequired()])
 
-    property_file = FileField('Add Image', validators=[FileRequired(), FileAllowed(['jpg', 'png'])])
+    property_file = FileField('Photo', validators=[FileRequired(), FileAllowed(['jpg', 'png'])])
     
     submit = SubmitField('Add Property')
 

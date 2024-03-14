@@ -39,7 +39,7 @@
         }
 
         .property_price{
-            background-color: lightblue;
+            background-color: #28c9de;
             border-radius: 10%;
             height: 30px;
             
@@ -88,6 +88,10 @@
             cursor: pointer; /* Change cursor on hover to indicate interactivity */
             transform: scale(1.01112);
           }
+
+          .banner_color{
+            background-color: #39bf9c;
+        }
     </style>
 
 {% endblock %}
@@ -107,11 +111,11 @@
                 <!-- <img src="../../uploads/im1.jpg" alt="www"> -->
                 
                 <h2 > {{user.property_title}} </h2> 
-                <p>{{user.property_location}}</p>
-                <p class ="property_price mt-0">${{user.property_price}}</p>
+                <p><i class="bi bi-geo-alt-fill"> </i>{{user.property_location}}</p>
+                <p class ="property_price mt-0 ml-5">${{ '{:,.2f}'.format(user.property_price) }}</p>
             </div>
-                <div class="see_more">
-                <p class = "flex_end"><a href="{{url_for('show_property',filename=user.id)}}">See more</a></p>
+                <div class="see_more banner_color">
+                <p class = "flex_end "><a href="{{url_for('show_property',filename=user.id)}}">View Property</a></p>
             </div>
         </div>
         {% endfor %}

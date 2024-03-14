@@ -2,61 +2,131 @@
 {% block styles%}
 
 <style>
+
+    body{
+        background-color: rgb(241, 241, 241);
+    }
+
     .large-input {
         height: 70px; /* Adjust width as needed */
     }
+
+    .width_{
+        width: 100%;
+    }
     .new_property_containter{
         width: 600px;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); /* Three columns with equal width */
+        grid-gap: 10px; /* Gap between grid items */
         
     }
+
+
+
     .container{
         display: flex;
         align-items: center;
         flex-direction: column;
     }
 
+    .fr2{
+        grid-column: span 3;
 
+    }
 
-    div{
-        margin-top: 10px;
+    .fr-1l{
+        grid-column: span 1/2;
+    }
+
+    .test fr-1r{
+        grid-column: span 2/3;
+        background-color: green;
+    }
+
+    form{
+        background-color: white;
+        margin: 10px;
+        padding: 10px;
+    }
+    .prop_heading{
+        width: 600px;
+    }
+    h2{
+        margin-left: 0px;
+        margin-top: 20PX;
+        padding-left: 0PX;
     }
 
 
+    .no_bg{
+        color: white;
+    }
+    .no_bg:hover{
+        color: bisque;
+    }
 
+    .banner_color{
+        background-color: #39bf9c;
+    }
+    
 </style>
 {%endblock%}
-{% block main %}
 
-    {% include 'flash_messages.html' %}
-    <div class="new_property_containter">
-    <form  action="{{url_for('properties_create')}}" method="POST" enctype="multipart/form-data">
-        <h2>Add New Property</h2>
-        {{ form.csrf_token }}
-        <div class="d-flex flex-column h-100 justify-content-between" >
-            {{ form.property_title.label }} {{ form.property_title}}
-            {{ form.property_description.label (size=255)}} {{ form.property_description }}
-            <div>
-                {{ form.property_no_rooms.label}} {{form.property_no_rooms}}
-                {{form.property_no_bathrooms.label}} {{form.property_no_bathrooms}}
-            </div>
-            
-            <div>
-                {{ form.property_price.label}} {{form.property_price}}
-                {{form.property_type.label}} {{form.property_type}}
-            </div>
-
-            {{form.property_location.label}} {{form.property_location}}
-            
-        </div>
-
-        <div>
-            {{form.property_file.label}} {{form.property_file}}
-        </div>
-        <button class="btn btn-lg btn-primary w-100 mt-3" type="submit">Submit</button>
-
-     </form>
-
+{% block main%}
+{% include 'flash_messages.html' %}
+<div class="prop_heading "> <h2>Add New Property</h2> </div>
+<form  action="{{url_for('properties_create')}}" method="POST" enctype="multipart/form-data">
+    {{ form.csrf_token }}
+    
+<div class="new_property_containter">
+    
+    <div class="test fr2">        
+        {{ form.property_title.label }}  <br>
+        {{ form.property_title (class="width_") }}
+    </div >
+       
+    <div class="test fr2">
+        {{ form.property_description.label (size=255)}} <br>
+        {{ form.property_description (class="width_")}}
+    </div>
+    <div class="test fr-1l">
+        {{ form.property_no_rooms.label}} <br>
+        {{form.property_no_rooms}}
     </div>
 
-{% endblock %}
-</html>
+    <div class="test fr-1r">
+        {{form.property_no_bathrooms.label}} <br>
+        {{form.property_no_bathrooms}}
+        
+    </div>
+
+    <div class="test fr-1l">
+        {{ form.property_price.label}} <br>
+        {{form.property_price}}
+    </div>
+
+    <div class="test fr-1r">
+        {{form.property_type.label}} <br> 
+        {{form.property_type}}
+        
+    </div>
+
+    <div class="test fr-1l">
+        {{form.property_location.label}} <br>
+        {{form.property_location}}
+    </div>
+
+    <div class="test fr-1l">
+        {{form.property_file.label}} <br>
+         {{form.property_file }}
+    </div>
+
+    <div class="test fr-1l">
+        <button class="btn btn-lg btn-primary w-100 mt-3 banner_color" type="submit">Submit</button>
+    </div>
+</div>
+
+</form>
+
+{%endblock%}
